@@ -32,17 +32,19 @@ class Comment
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+    
 
     /**
-     * @ORM\ManyToOne(targetEntity=Crowdfunding::class, inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comment")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Crowdfunding::class, inversedBy="comment")
      * @ORM\JoinColumn(nullable=false)
      */
     private $crowdfunding;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
-     */
-    private $user;
 
     public function getId(): ?int
     {

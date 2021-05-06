@@ -25,13 +25,19 @@ class Crowdfunding
     private $name;
 
     /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="crowdfunding")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="crowdfunding", orphanRemoval=true)
      */
-    private $comments;
+    private $comment;
 
     public function __construct()
     {
-        $this->comments = new ArrayCollection();
+        $this->comment = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,18 +57,30 @@ class Crowdfunding
         return $this;
     }
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Comment[]
      */
-    public function getComments(): Collection
+    public function getComment(): Collection
     {
-        return $this->comments;
+        return $this->comment;
     }
 
     public function addComment(Comment $comment): self
     {
-        if (!$this->comments->contains($comment)) {
-            $this->comments[] = $comment;
+        if (!$this->comment->contains($comment)) {
+            $this->comment[] = $comment;
             $comment->setCrowdfunding($this);
         }
 
@@ -71,7 +89,7 @@ class Crowdfunding
 
     public function removeComment(Comment $comment): self
     {
-        if ($this->comments->removeElement($comment)) {
+        if ($this->comment->removeElement($comment)) {
             // set the owning side to null (unless already changed)
             if ($comment->getCrowdfunding() === $this) {
                 $comment->setCrowdfunding(null);
@@ -85,4 +103,5 @@ class Crowdfunding
     {
         return $this->name;
     }
+
 }

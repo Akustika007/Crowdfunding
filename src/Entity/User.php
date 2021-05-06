@@ -37,13 +37,19 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity="Crowdfunding", mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Crowdfunding::class, mappedBy="user", orphanRemoval=true)
      */
-    private $crowdfundings;
+    private $crowdfunding;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $comment;
 
     public function __construct()
     {
-        $this->crowdfundings = new ArrayCollection();
+        $this->crowdfunding = new ArrayCollection();
+        $this->comment = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -130,15 +136,15 @@ class User implements UserInterface
     /**
      * @return Collection|Crowdfunding[]
      */
-    public function getCrowdfundings(): Collection
+    public function getCrowdfunding(): Collection
     {
-        return $this->crowdfundings;
+        return $this->crowdfunding;
     }
 
     public function addCrowdfunding(Crowdfunding $crowdfunding): self
     {
-        if (!$this->crowdfundings->contains($crowdfunding)) {
-            $this->crowdfundings[] = $crowdfunding;
+        if (!$this->crowdfunding->contains($crowdfunding)) {
+            $this->crowdfunding[] = $crowdfunding;
             $crowdfunding->setUser($this);
         }
 
@@ -147,10 +153,40 @@ class User implements UserInterface
 
     public function removeCrowdfunding(Crowdfunding $crowdfunding): self
     {
-        if ($this->crowdfundings->removeElement($crowdfunding)) {
+        if ($this->crowdfunding->removeElement($crowdfunding)) {
             // set the owning side to null (unless already changed)
             if ($crowdfunding->getUser() === $this) {
                 $crowdfunding->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComment(): Collection
+    {
+        return $this->comment;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comment->contains($comment)) {
+            $this->comment[] = $comment;
+            $comment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comment->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
             }
         }
 
