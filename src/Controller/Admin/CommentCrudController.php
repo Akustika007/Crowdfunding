@@ -19,10 +19,10 @@ class CommentCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('author'),
+            AssociationField::new('user'),
             TextEditorField::new('text'),
             DateTimeField::new('createdAt'),
-            AssociationField::new('crowdfunding')->autocomplete(),
+            AssociationField::new('crowdfunding'),
         ];
     }
 }

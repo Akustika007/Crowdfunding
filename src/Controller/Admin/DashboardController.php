@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Comment;
 use App\Entity\Crowdfunding;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
@@ -28,6 +29,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::section('Important');
+        yield MenuItem::linkToCrud('Users', 'fa fa-shield', User::class);
         yield MenuItem::linkToCrud('Crowdfundings', 'fa fa-file-pdf', Crowdfunding::class);
         yield MenuItem::linkToCrud('Comments', 'fa fa-file-word', Comment::class);
     }

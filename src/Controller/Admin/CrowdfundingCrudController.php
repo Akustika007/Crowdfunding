@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Crowdfunding;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class CrowdfundingCrudController extends AbstractCrudController
 {
@@ -13,13 +15,12 @@ class CrowdfundingCrudController extends AbstractCrudController
     }
 
 
-//    public function configureFields(string $pageName): iterable
-//    {
-//        return [
-//            TextField::new('autor'),
-//            TextEditorField::new('text'),
-//            TextField::new('email'),
-//        ];
-//    }
+    public function configureFields(string $pageName): iterable
+    {
+        return [
+            TextField::new('name'),
+            AssociationField::new('user')->hideOnForm(),
+        ];
+    }
 
 }
