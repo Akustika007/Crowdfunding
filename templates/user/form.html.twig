@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+
+{#
+1. Подправить отступы и конпку.
+2. Выводить уведомления об ошибке.
+
+
+
+#}
+
+<div class="container-fluid">
+    <div class="row no-gutters justify-content-center">
+        <div class="col-12 col-lg-4 col-md-4">
+            <div class="form-login shadow-lg">
+                <h1 class="h3 mb-4 font-weight-normal text-center">Регистрация</h1>
+                {{ form_start(form, {'method': 'POST'}) }}
+                <div class="row mb-3">
+                    {{ form_widget(form.email) }}
+                </div>
+                <div class="row mb-3">
+                    {{ form_widget(form.plainPassword.first) }}
+                </div>
+                <div class="row mb-5">
+                    {{ form_widget(form.plainPassword.second) }}
+                </div>
+                <div class="row">
+                    {{ form_widget(form.save) }}
+                </div>
+                {{ form_end(form) }}
+                <div class="mt-2 text-center">Уже были у нас? <a href="{{ path('app_login') }}">Войти</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
