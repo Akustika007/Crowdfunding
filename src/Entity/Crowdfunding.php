@@ -54,7 +54,7 @@ class Crowdfunding
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="crowdfunding", orphanRemoval=true)
      */
-    private ArrayCollection $comment;
+    private Collection $comment;
 
     public function __construct()
     {

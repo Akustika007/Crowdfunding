@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ user.name }} | Crowdfunding{% endblock %}
+
+{% block body %}
+
+    <div class="container p-3 my-3 border">
+        <main>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                {% block contentTitle %}
+                    <div >
+                        <h1>{{ user.name }}</h1>
+                        <span class="d-flex">ID: {{ user.id }}</span>
+                    </div>
+                    <div>
+                        <span class="d-block">Ваш баланс: 0$</span>
+                        <a href="#">Управление балансом</a>
+                    </div>
+
+                {% endblock %}
+            </div>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+{% endblock %}
+

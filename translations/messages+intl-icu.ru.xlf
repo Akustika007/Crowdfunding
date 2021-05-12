@@ -41,6 +41,30 @@
         <source>reg.log_message</source>
         <target>Уже были у нас?</target>
       </trans-unit>
+      <trans-unit id="qmpYFJC4" resname="enter">
+        <source>enter</source>
+        <target>Войти</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJC2" resname="log.inf_message">
+        <source>log.inf_message</source>
+        <target>Вы уже вошли как</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJC3" resname="logout">
+        <source>logout</source>
+        <target>Выйти</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJC5" resname="log.info_message">
+        <source>log.info_message</source>
+        <target>Первый раз тут?</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJC6" resname="registry">
+        <source>registry</source>
+        <target>Зарегистрироваться</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN3" resname="user.profile">
+        <source>user.profile</source>
+        <target>Профиль пользователя</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

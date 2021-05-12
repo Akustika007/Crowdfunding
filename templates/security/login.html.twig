@@ -19,10 +19,9 @@
 
                         {% if app.user %}
                             <div class="mb-3">
-                                Вы уже вошли как {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                {% trans%} log.inf_message {% endtrans%} {{ app.user.username }}, <a href="{{ path('app_logout') }}">{% trans %} logout {% endtrans %}</a>
                             </div>
                         {% endif %}
-
                         <h1 class="h3 mb-3 font-weight-normal text-center">Вход</h1>
                         <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
                                class="form-control mb-3" placeholder="Ваш email" required autofocus>
@@ -45,7 +44,7 @@
                         <button class="btn btn-primary mt-5 btn-block" type="submit">
                             Войти
                         </button>
-                        <div class="mt-2 text-center">Первый раз тут? <a href="{{ path('app_signup') }}">Зарегистрироваться</a></div>
+                        <div class="mt-2 text-center">{% trans %} log.info_message {% endtrans %} <a href="{{ path('app_signup') }}">{% trans %} registry {% endtrans %}</a></div>
                     </form>
                 </div>
             </div>

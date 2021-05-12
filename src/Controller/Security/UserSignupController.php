@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Security;
 
 
 use App\Entity\User;
@@ -65,36 +65,33 @@ class UserSignupController extends AbstractController
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
-
-
-//            return $this->redirectToRoute('app_admin_dashboard_index');
         }
 
         return $this->render('registration/form.html.twig', [
             'form' => $form->createView(),
         ]);
-
     }
 
-        /**
-         * @Route ("/verify/email", name="app_verify_email")
-         */
-        public function verifyUserEmail(Request $request): Response
+
+    /**
+     * @Route ("/verify/email", name="app_verify_email")
+     */
+    public function verifyUserEmail(Request $request): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        // validate email confirmation link, sets User::isVerified=true and persists
-        try {
-            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
-        } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $exception->getReason());
-
-            return $this->redirectToRoute('app_signup');
-        }
-
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+    // validate email confirmation link, sets User::isVerified=true and persists
+    try {
+        $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
+    } catch (VerifyEmailExceptionInterface $exception) {
+        $this->addFlash('verify_email_error', $exception->getReason());
 
         return $this->redirectToRoute('app_signup');
+    }
+
+    // @TODO Change the redirect on success and handle or remove the flash message in your templates
+    $this->addFlash('success', 'Your email address has been verified.');
+
+    return $this->redirectToRoute('profile');
     }
 }

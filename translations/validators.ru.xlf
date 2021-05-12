@@ -521,6 +521,15 @@
         <source>Please enter a valid week.</source>
         <target>Пожалуйста, введите действительную неделю.</target>
       </trans-unit>
+      <trans-unit id="l9VYRj1" resname="There is already an account with this email">
+        <source>There is already an account with this email</source>
+        <target>Аккаунт с этим адресом электронной почты уже существует</target>
+      </trans-unit>
+      <trans-unit id="l9VYRj2" resname="Your password should be at least {{ limit }} characters">
+        <source>Your password should be at least {{ limit }} characters</source>
+        <target>Пароль должен состоять как минимум из {{ limit }} символов</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>
