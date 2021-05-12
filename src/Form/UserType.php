@@ -6,9 +6,11 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -20,27 +22,34 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('name', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'reg.name',
+                    'class' => ''
+                    ],
+                ])
+            ->add('phone', NumberType::class, [
+                'attr' => ['placeholder' => 'phone'],
+                ])
             ->add('email', EmailType::class, [
-                'attr' => ['placeholder' => 'Ваш email']
+                'attr' => ['placeholder' => 'email'],
                 ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options' => [
-                    'attr' => ['placeholder' => 'Пароль'],
-                    'constraints' => [
-                        new NotBlank([
-                            'message' => 'Please enter a password',
-                        ]),
-                        new Length([
-                            'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
-                            // max length allowed by Symfony for security reasons
-                            'max' => 4096,
-                        ])
-                    ],
-                ],
-                'second_options' => [
-                    'attr' => ['placeholder' => 'Подтвердите пароль']
+                'mapped' => false,
+                'required' => true,
+                'first_options' => ['attr' => ['placeholder' => 'password']],
+                'second_options' => ['attr' => ['placeholder' => 'repeatPassword']],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a password',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 4096,
+                    ])
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
@@ -50,10 +59,11 @@ class UserType extends AbstractType
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
-                //'label' => 'Принять условия пользовательского соглашения.'
+                'label' => 'reg.agree',
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Зарегистрироваться'
+                'label' => 'reg.submit',
+                'attr' => ['class' => 'btn-primary mt-5 btn-block'],
             ]);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,32 +16,37 @@ class Comment
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
 
     /**
      * @ORM\Column(type="text")
      */
-    private $text;
+    private string $text;
 
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private DateTimeInterface $updatedAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private DateTimeInterface $createdAt;
     
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comment")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private User $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Crowdfunding::class, inversedBy="comment")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $crowdfunding;
+    private Crowdfunding $crowdfunding;
 
     public function getId(): ?int
     {
@@ -71,29 +77,40 @@ class Comment
         return $this;
     }
 
-    public function getCrowdfunding(): ?Crowdfunding
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCrowdfunding(): Crowdfunding
     {
         return $this->crowdfunding;
     }
 
-    public function setCrowdfunding(?Crowdfunding $crowdfunding): self
+    public function setCrowdfunding(Crowdfunding $crowdfunding): self
     {
         $this->crowdfunding = $crowdfunding;
 
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser(): User
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(User $user): self
     {
         $this->user = $user;
 
         return $this;
     }
-
 
 }

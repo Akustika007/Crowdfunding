@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CrowdfundingRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,23 +18,43 @@ class Crowdfunding
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private string $name;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $description;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $status;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private DateTimeInterface $updatedAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private DateTimeInterface $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="crowdfunding")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private User $user;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="crowdfunding", orphanRemoval=true)
      */
-    private $comment;
+    private ArrayCollection $comment;
 
     public function __construct()
     {
@@ -57,12 +78,60 @@ class Crowdfunding
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUser(): User
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(User $user): self
     {
         $this->user = $user;
 

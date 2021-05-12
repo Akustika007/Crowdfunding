@@ -37,9 +37,15 @@ class UserSignupController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $form->handleRequest($request);
 
-        if (($form->isSubmitted()) && ($form->isValid())) {
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+            $user->setStatus(User::STATUS_NEW);
             $user->setRoles(["ROLE_USER"]);
             $em->persist($user);
             $em->flush();

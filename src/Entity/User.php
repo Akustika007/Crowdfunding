@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,58 +17,107 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    public const STATUS_NEW = 1;
+
+    public const ROLE_USER = 'ROLE_USER';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", nullable=false)
      */
-    private $email;
+    private string $name;
+
+    /**
+     * @ORM\Column(type="string", length=180, unique=true, nullable=false)
+     */
+    private string $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=false)
      */
-    private $password;
+    private string $password;
 
-    private $plainPassword;
+    /**
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private string $phone;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private int $status;
+
+    /**
+     * @var DateTimeInterface
+     * @ORM\Column(type="datetime")
+     */
+    private DateTimeInterface $updatedAt;
+
+    /**
+     * @var DateTimeInterface
+     * @ORM\Column(type="datetime")
+     */
+    private DateTimeInterface $createdAt;
 
     /**
      * @ORM\OneToMany(targetEntity=Crowdfunding::class, mappedBy="user", orphanRemoval=true)
      */
-    private $crowdfunding;
+    private Collection $crowdfunding;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user", orphanRemoval=true)
      */
-    private $comment;
+    private Collection $comment;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isVerified = false;
+    private bool $isVerified = false;
 
     public function __construct()
     {
         $this->crowdfunding = new ArrayCollection();
         $this->comment = new ArrayCollection();
+        $this->updatedAt = new DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return $this
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -95,7 +146,7 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = self::ROLE_USER;
 
         return array_unique($roles);
     }
@@ -207,22 +258,6 @@ class User implements UserInterface
         return $this->email;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    /**
-     * @param mixed $plainPassword
-     */
-    public function setPlainPassword($plainPassword): void
-    {
-        $this->plainPassword = $plainPassword;
-    }
-
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -234,4 +269,82 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     * @return $this
+     */
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatus(): int
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param int $status
+     * @return $this
+     */
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return DateTimeInterface
+     */
+    public function getUpdatedAt(): DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param DateTimeInterface $updatedAt
+     * @return $this
+     */
+    public function setUpdatedAt(DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return DateTimeInterface
+     */
+    public function getCreatedAt(): DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param DateTimeInterface $createdAt
+     * @return $this
+     */
+    public function setCreatedAt(DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+
 }
