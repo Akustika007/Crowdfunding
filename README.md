@@ -1,4 +1,4 @@
-# Crowdfunding-companies
+# Crowdfunding-campaigns
 -----
 ## Task:
 Условие курсового проекта  
