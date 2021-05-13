@@ -5,9 +5,10 @@ namespace App\Controller\Security;
 
 
 use App\Entity\User;
-use App\Form\UserType;
+use App\Form\SignupFormType;
 use App\Security\AppAuthenticator;
 use App\Security\EmailVerifier;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
-class UserSignupController extends AbstractController
+class SignupController extends AbstractController
 {
     private EmailVerifier $emailVerifier;
 
@@ -30,11 +31,10 @@ class UserSignupController extends AbstractController
     /**
      * @Route ("/signup", name="app_signup")
      */
-    public function create(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppAuthenticator $authenticator): Response
+    public function create(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppAuthenticator $authenticator): Response
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(SignupFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -68,7 +68,7 @@ class UserSignupController extends AbstractController
         }
 
         return $this->render('registration/form.html.twig', [
-            'form' => $form->createView(),
+            'signup' => $form->createView(),
         ]);
     }
 

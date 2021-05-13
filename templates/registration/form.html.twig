@@ -17,35 +17,35 @@
                     <div class="alert alert-danger" role="alert">{{ flashError }}</div>
                 {% endfor %}
                 <h1 class="h3 mb-4 font-weight-normal text-center">{% trans %} reg.title {% endtrans %}</h1>
-                {{ form_start(form, {'method': 'POST'}) }}
+                {{ form_start(signup, {'method': 'POST'}) }}
                 <div class="row mb-3">
-                    {{ form_errors(form.name) }}
-                    {{ form_widget(form.name) }}
+                    {{ form_errors(signup.name) }}
+                    {{ form_widget(signup.name) }}
                 </div>
                 <div class="row mb-3">
-                    {{ form_errors(form.phone) }}
-                    {{ form_widget(form.phone) }}
+                    {{ form_errors(signup.phone) }}
+                    {{ form_widget(signup.phone) }}
                 </div>
                 <div class="row mb-3">
-                    {{ form_errors(form.email) }}
-                    {{ form_widget(form.email) }}
+                    {{ form_errors(signup.email) }}
+                    {{ form_widget(signup.email) }}
                 </div>
                 <div class="row mb-3">
-                    {{ form_errors(form.plainPassword.first) }}
-                    {{ form_widget(form.plainPassword.first) }}
+                    {{ form_errors(signup.plainPassword.first) }}
+                    {{ form_widget(signup.plainPassword.first) }}
                 </div>
                 <div class="row mb-3">
-                    {{ form_errors(form.plainPassword.second) }}
-                    {{ form_widget(form.plainPassword.second) }}
+                    {{ form_errors(signup.plainPassword.second) }}
+                    {{ form_widget(signup.plainPassword.second) }}
                 </div>
                 <div class="row mb-1">
-                    {{ form_errors(form.agreeTerms) }}
-                    {{ form_widget(form.agreeTerms) }}
+                    {{ form_errors(signup.agreeTerms) }}
+                    {{ form_widget(signup.agreeTerms) }}
                 </div>
                 <div class="row">
-                    {{ form_widget(form.save) }}
+                    {{ form_widget(signup.save) }}
                 </div>
-                {{ form_end(form) }}
+                {{ form_end(signup) }}
                 <div class="mt-2 text-center">{% trans %} reg.log_message {% endtrans %} <a href="{{ path('app_login') }}">{% trans %} enter {% endtrans %}</a></div>
             </div>
         </div>

@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class UserType extends AbstractType
+class SignupFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -25,7 +25,6 @@ class UserType extends AbstractType
             ->add('name', TextType::class, [
                 'attr' => [
                     'placeholder' => 'reg.name',
-                    'class' => ''
                     ],
                 ])
             ->add('phone', NumberType::class, [

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CrowdfundingRepository;
+use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Crowdfunding
 {
+    public const STATUS_NEW = 1;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,12 +24,12 @@ class Crowdfunding
     private int $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
      */
     private string $name;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $description;
 
@@ -56,9 +59,31 @@ class Crowdfunding
      */
     private Collection $comment;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $description_long;
+
+    /**
+     * @ORM\Column(type="string", length=128 , nullable=true)
+     */
+    private ?string $country;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private DateTimeInterface $finished_at;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private int $money_purpose;
+
     public function __construct()
     {
         $this->comment = new ArrayCollection();
+        $this->setCreatedAt(new DateTimeImmutable());
+        $this->setUpdatedAt(new DateTimeImmutable());
     }
 
     public function getId(): ?int
@@ -171,5 +196,53 @@ class Crowdfunding
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getDescriptionLong(): ?string
+    {
+        return $this->description_long;
+    }
+
+    public function setDescriptionLong(string $description_long): self
+    {
+        $this->description_long = $description_long;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getFinishedAt(): ?\DateTimeInterface
+    {
+        return $this->finished_at;
+    }
+
+    public function setFinishedAt(\DateTimeInterface $finished_at): self
+    {
+        $this->finished_at = $finished_at;
+
+        return $this;
+    }
+
+    public function getMoneyPurpose(): ?int
+    {
+        return $this->money_purpose;
+    }
+
+    public function setMoneyPurpose(int $money_purpose): self
+    {
+        $this->money_purpose = $money_purpose;
+
+        return $this;
     }
 }

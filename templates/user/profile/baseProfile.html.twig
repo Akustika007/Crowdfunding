@@ -5,7 +5,15 @@
 {% block body %}
 
     <div class="container p-3 my-3 border">
-        <main>
+        <main class="position-relative">
+            {% for info in app.flashes('info') %}
+            <div style="width: 95%" class="alert alert-warning alert-dismissible fade show position-absolute " role="alert">
+                {{ info }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 {% block contentTitle %}
                     <div >
