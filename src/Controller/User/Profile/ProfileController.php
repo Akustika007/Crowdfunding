@@ -16,6 +16,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ProfileController extends AbstractController
 {
+    private const FLASH_INFO = 'info';
+
     /**
      * @Route ("user/profile", name="profile")
      */
@@ -23,8 +25,6 @@ class ProfileController extends AbstractController
     {
         return $this->render('user/profile/profile.html.twig', ['user' => $this->getUser()]);
     }
-
-    private const FLASH_INFO = 'info';
 
     /**
      * @param Request $request

@@ -1,16 +1,103 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container p-3 my-3 border">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Library</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Data</li>
-        </ol>
-    </nav>
-    <h1>{{ campaign.name }}</h1>
-    <p>{{ campaign.description }}</p>
-    {{ campaign.moneyPurpose }}
-</div>
+    <!-- Page content-->
+    <div class="container">
+        <nav aria-label="breadcrumb" class="mt-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('app_homepage') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+        </nav>
+        <div class="row">
+            <!-- Post content-->
+            <div class="col-lg-8 mt-2">
+                <!-- Title-->
+                <h1 class="mt-2">{{ campaign.name }}</h1>
+                <!-- Discription-->
+                <p>{{ campaign.description }}</p>
+                <!-- Author-->
+                <hr />
+                <!-- Date and time-->
+                <span>Started on {{ createdTime }}</span>
+                <p>
+                    by
+                    <a href="#!">{{ campaign.user }}</a>
+                </p>
+                <hr />
+                <!-- Preview image-->
+                <img class="img-fluid rounded" src="https://via.placeholder.com/900x300" alt="..." />
+                <hr />
+                <!-- Purpose-->
+                <div class="d-flex justify-content-between">
+                    <div class="ml-3">
+                        <span class="row" style="font-size: 35px;">213 000 у.е.</span>
+                        <span class="row">из {{ campaign.moneyPurpose / 100 }} у.е.</span>
+                    </div>
+                    <div class="mr-3 mt-auto">
+                        <span class="row" style="font-size: 20px;">114 спонсоров</span>
+                        <span class="row">собрано 75%</span>
+                    </div>
+                </div>
+                <div class="progress mb-3 mt-2">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-primary btn-lg mb-5">Поддержать проект</button>
+                    <span>Осталось {{ leftTime }} дней</span>
+                </div>
+                <!-- Post content-->
+                {{ campaign.descriptionLong|markdown }}
+                <!-- Comments form-->
+                <div class="card my-4">
+                    <h5 class="card-header">Leave a Comment:</h5>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group"><textarea class="form-control" rows="3"></textarea></div>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Single comment-->
+                <div class="media mb-4">
+                    <img class="d-flex mr-3 rounded-circle" src="https://via.placeholder.com/50x50" alt="..." />
+                    <div class="media-body">
+                        <h5 class="mt-0">Commenter Name</h5>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </div>
+                </div>
+            </div>
+            <!-- Sidebar widgets column-->
+            <div class="col-md-4 mt-5">
+                <!-- donations-->
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="https://via.placeholder.com/286x180" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card mt-2" style="width: 18rem;">
+                    <img class="card-img-top" src="https://via.placeholder.com/286x180" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Crowdfunding 2021</p></div>
+    </footer>
+
 {% endblock %}
+
+
+
+
+

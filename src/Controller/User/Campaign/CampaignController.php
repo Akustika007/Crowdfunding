@@ -18,9 +18,13 @@ class CampaignController extends AbstractController
      */
     public function viewCampaigns(Crowdfunding $campaign): Response
     {
+        $createdAt = $campaign->getCreatedAt()->format('F d, Y \a\t H:i');
+        $leftTime = (date_diff($campaign->getFinishedAt(), $campaign->getCreatedAt()))->format('%d');
         return $this->render('user/campaign/view.html.twig',
             [
-                'campaign' => $campaign
+                'leftTime' => $leftTime,
+                'createdTime' => $createdAt,
+                'campaign' => $campaign,
             ]
         );
     }
