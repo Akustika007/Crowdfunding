@@ -79,11 +79,18 @@ class Crowdfunding
      */
     private int $money_purpose;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Rating::class, mappedBy="crowdfunding", orphanRemoval=true)
+     */
+    private $rating;
+
     public function __construct()
     {
         $this->comment = new ArrayCollection();
         $this->setCreatedAt(new DateTimeImmutable());
         $this->setUpdatedAt(new DateTimeImmutable());
+        $this->ratings = new ArrayCollection();
+        $this->rating = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -245,4 +252,35 @@ class Crowdfunding
 
         return $this;
     }
+
+    /**
+     * @return Collection|Rating[]
+     */
+    public function getRating(): Collection
+    {
+        return $this->rating;
+    }
+
+    public function addRating(Rating $rating): self
+    {
+        if (!$this->rating->contains($rating)) {
+            $this->rating[] = $rating;
+            $rating->setCrowdfunding($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRating(Rating $rating): self
+    {
+        if ($this->rating->removeElement($rating)) {
+            // set the owning side to null (unless already changed)
+            if ($rating->getCrowdfunding() === $this) {
+                $rating->setCrowdfunding(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

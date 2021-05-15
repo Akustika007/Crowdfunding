@@ -1,0 +1,13 @@
+{{ form_start(form, {'action': path('comment_new', {'id': campaign.id}), 'attr': {'id': 'comment-form'} }) }}
+<div class="card my-4">
+    <h5 class="card-header">Leave a Comment:</h5>
+    <div class="card-body">
+        <div class="form-group">
+            {{ form_errors(form.text) }}
+            {{ form_widget(form.text, {'attr': {'class': 'textarea'} }) }}
+        </div>
+        {{ form_widget(form.push) }}
+    </div>
+</div>
+
+{{ form_end(form) }}

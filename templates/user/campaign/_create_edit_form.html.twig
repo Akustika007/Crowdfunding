@@ -1,0 +1,51 @@
+{{ form_start(create_campaign, {'method': 'POST'}) }}
+<div class="form-group row">
+    <div class="col-2 col-form-label border-right">{{ form_label(create_campaign.name) }}</div>
+    <div class="col-9">
+        {{ form_errors(create_campaign.name) }}
+        {{ form_widget(create_campaign.name) }}
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-2 col-form-label border-right">{{ form_label(create_campaign.description) }}</div>
+    <div class="col-9">
+        {{ form_errors(create_campaign.description) }}
+        {{ form_widget(create_campaign.description) }}
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-2 col-form-label border-right">Image:</div>
+    <div class="col-9"></div>
+</div>
+<div class="form-group row">
+    <div class="col-2 col-form-label border-right">{{ form_label(create_campaign.country) }}</div>
+    <div class="col-9">
+        {{ form_errors(create_campaign.country) }}
+        {{ form_widget(create_campaign.country) }}
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-2 col-form-label border-right">{{ form_label(create_campaign.moneyPurpose) }}</div>
+    <div class="col-9">
+        {{ form_errors(create_campaign.moneyPurpose) }}
+        {{ form_widget(create_campaign.moneyPurpose) }}
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-2 col-form-label border-right">{{ form_label(create_campaign.finishedAt) }}</div>
+    <div class="col-9">
+        {{ form_errors(create_campaign.finishedAt) }}
+        {{ form_widget(create_campaign.finishedAt) }}
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-2 col-form-label border-right">{{ form_label(create_campaign.descriptionLong) }}</div>
+    <div class="col-9">
+        {{ form_errors(create_campaign.descriptionLong) }}
+        {{ form_widget(create_campaign.descriptionLong) }}
+    </div>
+</div>
+<div class="form-group row mr-5">
+    <div class="ml-auto">{{ form_widget(create_campaign.save, {'label': 'Сохранить'}) }}</div>
+</div>
+{{ form_end(create_campaign) }}

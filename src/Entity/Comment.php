@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,15 +21,9 @@ class Comment
 
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=800)
      */
     private string $text;
-
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private DateTimeInterface $updatedAt;
 
     /**
      * @ORM\Column(type="datetime")
@@ -48,12 +43,17 @@ class Comment
      */
     private Crowdfunding $crowdfunding;
 
+    public function __construct()
+    {
+        $this->setCreatedAt(new DateTimeImmutable());
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getText(): ?string
+    public function getText(): string
     {
         return $this->text;
     }
@@ -73,18 +73,6 @@ class Comment
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
 
         return $this;
     }

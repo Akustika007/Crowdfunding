@@ -85,12 +85,18 @@ class User implements UserInterface
      */
     private bool $isVerified = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Rating::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $rating;
+
     public function __construct()
     {
         $this->crowdfunding = new ArrayCollection();
         $this->comment = new ArrayCollection();
         $this->updatedAt = new DateTimeImmutable();
         $this->createdAt = new DateTimeImmutable();
+        $this->rating = new ArrayCollection();
     }
 
     public function getId(): int
@@ -346,5 +352,34 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|Rating[]
+     */
+    public function getRating(): Collection
+    {
+        return $this->rating;
+    }
+
+    public function addRating(Rating $rating): self
+    {
+        if (!$this->rating->contains($rating)) {
+            $this->rating[] = $rating;
+            $rating->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRating(Rating $rating): self
+    {
+        if ($this->rating->removeElement($rating)) {
+            // set the owning side to null (unless already changed)
+            if ($rating->getUser() === $this) {
+                $rating->setUser(null);
+            }
+        }
+
+        return $this;
+    }
 
 }

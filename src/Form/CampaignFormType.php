@@ -68,11 +68,6 @@ class CampaignFormType extends AbstractType
                 'attr' => ['class' => 'btn btn-success btn-lg mt-5 pl-auto'],
             ]);
 
-
-
-
-
-
     }
 
     public function configureOptions(OptionsResolver $resolver)

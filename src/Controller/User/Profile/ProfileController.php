@@ -58,6 +58,30 @@ class ProfileController extends AbstractController
     }
 
     /**
+     * @Route("/campaign/{id<\d+>}/edit", name="camp_edit", methods={"GET", "POST"})
+     */
+    public function edit(Request $request, Crowdfunding $campaign, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(CampaignFormType::class, $campaign);
+
+        $form->handleRequest($request);
+        $user = $this->getUser();
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em->persist($campaign);
+            $em->flush();
+            return $this->redirectToRoute('camp_edit', ['id' => $campaign->getId()]);
+        }
+
+        return $this->render('user/campaign/edit.html.twig', [
+            'campaign' => $campaign,
+            'create_campaign' => $form->createView(),
+            'user' => $user,
+        ]);
+    }
+
+
+    /**
      * @return Response
      * @Route ("/user/campaign/list", name="camp_list")
      */

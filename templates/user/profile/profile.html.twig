@@ -19,7 +19,7 @@
     <div class="container p-3 my-3 border">
         <div class="d-flex justify-content-between">
             <h2 class="font-weight-normal pb-2">{% trans %}user.campaigns{% endtrans %}</h2>
-            <a class="" href="{{ path('camp_create') }}">{% trans %}user.create{% endtrans %}</a>
+            <a href="{{ path('camp_create') }}" class="btn btn-success pt-2">{% trans %}user.create{% endtrans %}</a>
         </div>
 
         {{ render_esi(url('camp_list')) }}
