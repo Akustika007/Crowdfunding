@@ -529,7 +529,6 @@
         <source>Your password should be at least {{ limit }} characters</source>
         <target>Пароль должен состоять как минимум из {{ limit }} символов</target>
       </trans-unit>
-
     </body>
   </file>
 </xliff>

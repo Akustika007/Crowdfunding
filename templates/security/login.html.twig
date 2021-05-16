@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Crowdfunding | {{'login.login_head'|trans}}{% endblock %}
 {% block stylesheets %}
     {{ encore_entry_link_tags('app') }}
     <link rel="stylesheet" href="{{ asset('build/app.css') }}">
@@ -12,20 +12,20 @@
         <div class="row no-gutters justify-content-center">
             <div class="col-12 col-lg-4 col-md-4">
                 <div class="form-login shadow-lg ">
-                    <form method="post">
+                    <form method="post" novalidate>
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
 
                         {% if app.user %}
                             <div class="mb-3">
-                                {% trans%} log.inf_message {% endtrans%} {{ app.user.username }}, <a href="{{ path('app_logout') }}">{% trans %} logout {% endtrans %}</a>
+                                {{ 'login.log_message'|trans }} {{ app.user.username }}, <a href="{{ path('app_logout') }}">{{ 'login.logout'|trans }}</a>
                             </div>
                         {% endif %}
-                        <h1 class="h3 mb-3 font-weight-normal text-center">Вход</h1>
+                        <h1 class="h3 mb-3 font-weight-normal text-center">{{'login.login_head'|trans}}</h1>
                         <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
-                               class="form-control mb-3" placeholder="Ваш email" required autofocus>
-                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+                               class="form-control mb-3" placeholder="{{'login.email_holder'|trans}}" required autofocus>
+                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{{'login.password_holder'|trans}}" required>
 
                         <input type="hidden" name="_csrf_token"
                                value="{{ csrf_token('authenticate') }}"
@@ -42,9 +42,9 @@
                         </div>
                         #}
                         <button class="btn btn-primary mt-5 btn-block" type="submit">
-                            Войти
+                            {{'login.signin'|trans}}
                         </button>
-                        <div class="mt-2 text-center">{% trans %} log.info_message {% endtrans %} <a href="{{ path('app_signup') }}">{% trans %} registry {% endtrans %}</a></div>
+                        <div class="mt-2 text-center"> {{ 'login.inf_message'|trans}} <a href="{{ path('app_signup') }}">{{ 'login.signup'|trans }}</a></div>
                     </form>
                 </div>
             </div>

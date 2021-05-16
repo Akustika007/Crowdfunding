@@ -15,7 +15,7 @@ class HomeController extends AbstractController
      * @return Response
      * @Route("/", name="app_homepage")
      */
-    public function index(CrowdfundingRepository $crowdfundingRepository,PaginatorInterface $paginator, Request $request): Response
+    public function index(CrowdfundingRepository $crowdfundingRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $campaigns = $crowdfundingRepository->findAll();
 

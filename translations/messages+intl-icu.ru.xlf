@@ -5,94 +5,6 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="IB.qAAt" resname="reg.title">
-        <source>reg.title</source>
-        <target>Регистрация</target>
-      </trans-unit>
-      <trans-unit id="a340aSQ" resname="reg.name">
-        <source>reg.name</source>
-        <target>Имя</target>
-      </trans-unit>
-      <trans-unit id="RVadpX9" resname="phone">
-        <source>phone</source>
-        <target>Телефон</target>
-      </trans-unit>
-      <trans-unit id="giREF.l" resname="email">
-        <source>email</source>
-        <target>Email</target>
-      </trans-unit>
-      <trans-unit id="XohImNo" resname="password">
-        <source>password</source>
-        <target>Пароль</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJN" resname="repeatPassword">
-        <source>repeatPassword</source>
-        <target>Повторите пароль</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJN2" resname="reg.submit">
-        <source>reg.submit</source>
-        <target>Зарегистрироваться</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJZ2" resname="reg.agree">
-        <source>reg.agree</source>
-        <target>Принять условия пользовательского соглашения.</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJC1" resname="reg.log_message">
-        <source>reg.log_message</source>
-        <target>Уже были у нас?</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJC4" resname="enter">
-        <source>enter</source>
-        <target>Войти</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJC2" resname="log.inf_message">
-        <source>log.inf_message</source>
-        <target>Вы уже вошли как</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJC3" resname="logout">
-        <source>logout</source>
-        <target>Выйти</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJC5" resname="log.info_message">
-        <source>log.info_message</source>
-        <target>Первый раз тут?</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJC6" resname="registry">
-        <source>registry</source>
-        <target>Зарегистрироваться</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJF5" resname="user.profile">
-        <source>user.profile</source>
-        <target>Профиль пользователя</target>
-      </trans-unit>
-      <trans-unit id="qmpbxdJF5" resname="user.campaigns">
-        <source>user.campaigns</source>
-        <target>Созданные проекты:</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJQ1" resname="camp.name_label">
-        <source>camp.name_label</source>
-        <target>Название проекта:</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJW2" resname="camp.name_holder">
-        <source>camp.name_holder</source>
-        <target>Название должно содержать не более 50 символов.</target>
-      </trans-unit>
-      <trans-unit id="qmpYFQC4" resname="camp.desc_holder">
-        <source>camp.desc_holder</source>
-        <target>Опишите Ваш проект в 2-3 предложениях.</target>
-      </trans-unit>
-      <trans-unit id="qmpYFJZ4" resname="camp.desc_label">
-        <source>camp.desc_label</source>
-        <target>Коротко о проекте:</target>
-      </trans-unit>
-      <trans-unit id="qmpYFQB3" resname="create_camp">
-        <source>create_camp</source>
-        <target>Создание проекта</target>
-      </trans-unit>
-      <trans-unit id="qmpYFTR3" resname="camp.country_label">
-        <source>camp.country_label</source>
-        <target>Страна реализации:</target>
-      </trans-unit>
       <trans-unit id="qmpYFJB1" resname="Russian">
         <source>Russian</source>
         <target>Россия</target>
@@ -105,29 +17,45 @@
         <source>Belarus</source>
         <target>Беларусь</target>
       </trans-unit>
-      <trans-unit id="qbvcx24" resname="camp.moneyPurpose_label">
-        <source>camp.moneyPurpose_label</source>
-        <target>Финансовая цель:</target>
+      <trans-unit id="qBCXXH4" resname="Business">
+        <source>Business</source>
+        <target>Бизнес</target>
       </trans-unit>
-      <trans-unit id="qqbtx24" resname="camp.descLong_label">
-        <source>camp.descLong_label</source>
-        <target>Детальное описание:</target>
+      <trans-unit id="qm12FAH4" resname="Games">
+        <source>Games</source>
+        <target>Игры</target>
       </trans-unit>
-      <trans-unit id="qb2g44" resname="camp.finishedAt_label">
-          <source>camp.finishedAt_label</source>
-          <target>Дата окончания:</target>
+      <trans-unit id="qmbdf4" resname="Education">
+        <source>Education</source>
+        <target>Образование</target>
       </trans-unit>
-      <trans-unit id="qbv2244" resname="camp.save">
-        <source>camp.save</source>
-        <target>Создать</target>
+      <trans-unit id="qmpvxcAH4" resname="Music">
+        <source>Music</source>
+        <target>Музыка</target>
       </trans-unit>
-      <trans-unit id="qbv2242" resname="campaign_created" >
-        <source>campaign_created</source>
-        <target>Проект создан.</target>
+      <trans-unit id="qm2f2xH4" resname="Idea for a million">
+        <source>Idea for a million</source>
+        <target>Идея на миллион</target>
       </trans-unit>
-      <trans-unit id="qbv1222" resname="user.create" >
-        <source>user.create</source>
-        <target>Новый проект</target>
+      <trans-unit id="qmvwg2H4" resname="Football">
+        <source>Football</source>
+        <target>Футболл</target>
+      </trans-unit>
+      <trans-unit id="qmpYF76H4" resname="Basketball">
+        <source>Баксетболл</source>
+        <target>Баскетбол</target>
+      </trans-unit>
+      <trans-unit id="qmp3443AH4" resname="Hockey">
+        <source>Hockey</source>
+        <target>Хоккей</target>
+      </trans-unit>
+      <trans-unit id="qms52gFAH4" resname="School">
+        <source>School</source>
+        <target>Школа</target>
+      </trans-unit>
+      <trans-unit id="qmn3fAH4" resname="University">
+        <source>University</source>
+        <target>Университет</target>
       </trans-unit>
     </body>
   </file>

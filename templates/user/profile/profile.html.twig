@@ -9,20 +9,40 @@
         <div class="col-md-9">
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="list-group-item"><b>{% trans %}name {% endtrans %}</b>:  {{ user.name }}</li>
-                    <li class="list-group-item"><b>{% trans %}email{% endtrans %}</b>: {{ user.email }}</li>
-                    <li class="list-group-item"><b>{% trans %}phone{% endtrans %}</b>: {{ user.phone }}</li>
+                    <li class="list-group-item"><b>{{ 'profile.name'|trans }}:</b>:  {{ user.name }}</li>
+                    <li class="list-group-item"><b>{{ 'profile.email'|trans }}:</b>: {{ user.email }}</li>
+                    <li class="list-group-item"><b>{{ 'profile.phone'|trans }}:</b>: {{ user.phone }}</li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container p-3 my-3 border">
         <div class="d-flex justify-content-between">
-            <h2 class="font-weight-normal pb-2">{% trans %}user.campaigns{% endtrans %}</h2>
-            <a href="{{ path('camp_create') }}" class="btn btn-success pt-2">{% trans %}user.create{% endtrans %}</a>
+            <h2 class="font-weight-normal pb-2">{{ 'profile.campaigns'|trans }}:</h2>
+            <a href="{{ path('camp_create') }}" class="btn btn-success pt-2">{{ 'profile.create'|trans }}</a>
         </div>
 
-        {{ render_esi(url('camp_list')) }}
+        <ul class="nav flex-column mb-2">
+            {% for campaign in campaigns %}
+                <div class="card mt-3 justify-content-between">
+                    <div>
+                        <h5 class="card-header">{{ campaign.name }}</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">{{'profile.current'|trans}} 130 {{'profile.ye'|trans}}</h5>
+                            <p class="card-text">{{ campaign.description }}</p>
+                            <a href="{{ path('camp_view', {id: campaign.id})}}" class="btn btn-primary">{{ 'profile.project'|trans }}</a>
+                            <a href="{{ path('camp_edit', {id: campaign.id})}}" class="btn btn-warning">{{'profile.edit'|trans}}</a>
+                            <a href="{{ path('camp_delete', {id: campaign.id})}}" class="btn btn-danger">{{'profile.delete'|trans}}</a>
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            {% endfor %}
+        </ul>
+        <div class="navigation d-flex justify-content-center">
+            {{ knp_pagination_render(campaigns) }}
+        </div>
     </div>
 {% endblock %}
 

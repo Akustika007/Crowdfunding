@@ -3,3 +3,56 @@ navbar:
   login: Войти
   signup: Зарегистрироваться
   search: Искать!
+  admin: Админка
+  profile: Профиль
+  logout: Выйти с аккаунта
+
+login:
+  Email could not be found.: Комбинация с таким email не найдена!
+  signup: Зарегистрируйтесь!
+  signin: Войти на сайт
+  password_holder: Пароль
+  email_holder: Ваш email
+  login_head: Вход
+  logout: Выйти
+  log_message: Вы уже вошли как
+  inf_message: Первый раз тут?
+
+reg:
+  title: Регистрация
+  log_message: Уже были у нас?
+  entry: Войти!
+  name: Имя пользователя
+  phone: Телефон
+  email: Email
+  password: Пароль
+  repeatPassword: Повторите пароль
+  agree: Принять условия пользовательского соглашения.
+  submit: Зарегистрироваться
+
+profile:
+  name: Имя пользователя
+  email: Email
+  phone: Телефон
+  selfmoney: Ваш баланс
+  controlSelfmoney: Управление балансом
+  campaigns: Ваши кампании
+  create: Создать проект
+  current: Собрано
+  ye: у.е.
+  project: Перейти к проекту
+  edit: Редактировать
+  delete: Удалить
+camp:
+  create: Управление проектом
+  name_label: Название проекта
+  name_holder: Название должно содержать не более 50 символов.
+  desc_label: Коротко о проекте
+  desc_holder: Опишите Ваш проект в 2-3 предложениях.
+  name: Категория
+  country_label: Страна реализации
+  moneyPurpose_label: Финансовая цель
+  finishedAt_label: Дата окончания
+  descLong_label: Детальное описание
+  save: Сохранить
+  Belarus: Беларусь

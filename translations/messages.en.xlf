@@ -5,66 +5,61 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="eNHLFm5" resname="navbar.search_holder">
-        <source>navbar.search_holder</source>
-        <target>Search for...</target>
+      <trans-unit id="qmpYfV1" resname="Russian">
+        <source>Russian</source>
+        <target>Russian</target>
       </trans-unit>
-      <trans-unit id="F5RrUoF" resname="campaign_created">
-        <source>campaign_created</source>
-        <target>__campaign_created</target>
+      <trans-unit id="qmXSV3" resname="Ukraine">
+        <source>Ukraine</source>
+        <target>Ukraine</target>
       </trans-unit>
-      <trans-unit id="IB.qAAt" resname="reg.title">
-        <source>reg.title</source>
-        <target>__reg.title</target>
+      <trans-unit id="qm12H4" resname="Belarus">
+        <source>Belarus</source>
+        <target>Belarus</target>
       </trans-unit>
-      <trans-unit id="iHjM9MW" resname="reg.log_message">
-        <source>reg.log_message</source>
-        <target>__reg.log_message</target>
+      <trans-unit id="qBCXXH4" resname="Business">
+        <source>Business</source>
+        <target>Business</target>
       </trans-unit>
-      <trans-unit id="4I1waz5" resname="enter">
-        <source>enter</source>
-        <target>__enter</target>
+      <trans-unit id="qm12FAH4" resname="Games">
+        <source>Games</source>
+        <target>Games</target>
       </trans-unit>
-      <trans-unit id="ZVH_05B" resname="log.inf_message">
-        <source>log.inf_message</source>
-        <target>__log.inf_message</target>
+      <trans-unit id="qmbdf4" resname="Education">
+        <source>Education</source>
+        <target>Education</target>
       </trans-unit>
-      <trans-unit id="ACcM9j_" resname="logout">
-        <source>logout</source>
-        <target>__logout</target>
+      <trans-unit id="qmpvxcAH4" resname="Music">
+        <source>Music</source>
+        <target>Music</target>
       </trans-unit>
-      <trans-unit id="wxFVXV3" resname="log.info_message">
-        <source>log.info_message</source>
-        <target>__log.info_message</target>
+      <trans-unit id="qm2f2xH4" resname="Idea for a million">
+        <source>Idea for a million</source>
+        <target>Idea for a million</target>
       </trans-unit>
-      <trans-unit id="hySRow1" resname="registry">
-        <source>registry</source>
-        <target>__registry</target>
+      <trans-unit id="qmvwg2H4" resname="Football">
+        <source>Football</source>
+        <target>Football</target>
       </trans-unit>
-      <trans-unit id="houfMVN" resname="create_camp">
-        <source>create_camp</source>
-        <target>__create_camp</target>
+      <trans-unit id="qmpYF76H4" resname="Basketball">
+        <source>Basketball</source>
+        <target>Basketball</target>
       </trans-unit>
-      <trans-unit id="gqNTf.D" resname="name">
-        <source>name</source>
-        <target>__name</target>
+      <trans-unit id="qmp3443AH4" resname="Hockey">
+        <source>Hockey</source>
+        <target>Hockey</target>
       </trans-unit>
-      <trans-unit id="giREF.l" resname="email">
-        <source>email</source>
-        <target>__email</target>
+      <trans-unit id="qms52gFAH4" resname="School">
+        <source>School</source>
+        <target>School</target>
       </trans-unit>
-      <trans-unit id="RVadpX9" resname="phone">
-        <source>phone</source>
-        <target>__phone</target>
+      <trans-unit id="qmn3fAH4" resname="University">
+        <source>University</source>
+        <target>University</target>
       </trans-unit>
-      <trans-unit id="XSOmcKL" resname="user.campaigns">
-        <source>user.campaigns</source>
-        <target>__user.campaigns</target>
-      </trans-unit>
-      <trans-unit id="zPJhxi6" resname="user.create">
-        <source>user.create</source>
-        <target>__user.create</target>
-      </trans-unit>
+
+
+
     </body>
   </file>
 </xliff>

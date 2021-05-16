@@ -8,6 +8,7 @@ use App\Entity\Crowdfunding;
 use App\Entity\User;
 use App\Form\CampaignFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,9 +22,18 @@ class ProfileController extends AbstractController
     /**
      * @Route ("user/profile", name="profile")
      */
-    public function profile(): Response
+    public function profile(PaginatorInterface $paginator, Request $request): Response
     {
-        return $this->render('user/profile/profile.html.twig', ['user' => $this->getUser()]);
+        $user = $this->getUser();
+        $campaigns = $user->getCrowdfunding();
+
+        $campaigns = $paginator->paginate(
+            $campaigns,
+            $request->query->getInt('page', 1),
+            5/*limit per page*/
+        );
+
+        return $this->render('user/profile/profile.html.twig', ['user' => $this->getUser(), 'campaigns' => $campaigns]);
     }
 
     /**
@@ -80,23 +90,16 @@ class ProfileController extends AbstractController
         ]);
     }
 
-
     /**
-     * @return Response
-     * @Route ("/user/campaign/list", name="camp_list")
+     * @Route("/campaign/{id<\d+>}/delete", name="camp_delete")
      */
-    public function listCampaigns(): Response
+    public function deleteShop(Crowdfunding $campaign, EntityManagerInterface $em): Response
     {
-        /**
-         * @var User $user
-         */
-        $user = $this->getUser();
+        $em->remove($campaign);
+        $em->flush();
 
-        return $this->render('user/campaign/list.html.twig',
-            [
-                'campaigns' => $user->getCrowdfunding(),
-            ]
-        );
+        return $this->redirectToRoute('profile');
     }
+
 
 }

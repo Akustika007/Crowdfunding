@@ -73,6 +73,10 @@
         <source>Invalid or expired login link.</source>
         <target>Ссылка для входа недействительна или просрочена.</target>
       </trans-unit>
+      <trans-unit id="l9VY2cr2" resname="Email could not be found.">
+        <source>Email could not be found.</source>
+        <target>Комбинации с таким email не найдено.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

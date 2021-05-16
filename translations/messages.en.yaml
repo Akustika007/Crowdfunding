@@ -3,3 +3,55 @@ navbar:
   login: Login
   signup: Signup
   search: Go!
+  admin: Admin Dashboard
+  profile: Profile
+  logout: Logout
+
+login:
+  signup: Signup!
+  signin: Log me in!
+  password_holder: Password
+  email_holder: Email
+  login_head: Log in
+  logout: Logout
+  log_message: You logged as
+  inf_message: New to Crowdfunding?
+
+reg:
+  title: Register
+  log_message: Have an accout?
+  entry: Log in!
+  name: Username
+  phone: Phone
+  email: Email
+  password: Password
+  repeatPassword: Repeat password
+  agree: Accept the terms of the user agreement.
+  submit: Sign me up!
+
+profile:
+  name: Username
+  email: Email
+  phone: Phone
+  selfmoney: Your balance
+  controlSelfmoney: Balance management
+  campaigns: Your campaigns
+  create: New project
+  current: Collected
+  ye: с.u.
+  project: View project
+  edit: Edit
+  delete: Delete
+
+camp:
+  create: Prject control
+  name_label: Project name
+  name_holder: The name should be no more than 50 characters.
+  desc_label: Short description
+  desc_holder: Describe your project in 2-3 sentences.
+  name: Category
+  country_label: Country of implementation
+  moneyPurpose_label: Money purpose
+  finishedAt_label: Expiration date
+  descLong_label: Detailed description
+  save: Save

@@ -81,6 +81,10 @@
         <source>Too many failed login attempts, please try again in %minutes% minutes.</source>
         <target>Too many failed login attempts, please try again in %minutes% minutes.</target>
       </trans-unit>
+      <trans-unit id="l9xc2cr2" resname="Email could not be found.">
+        <source>Email could not be found.</source>
+        <target>No match was found with this email.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

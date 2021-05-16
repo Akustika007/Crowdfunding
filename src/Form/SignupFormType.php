@@ -28,17 +28,17 @@ class SignupFormType extends AbstractType
                     ],
                 ])
             ->add('phone', NumberType::class, [
-                'attr' => ['placeholder' => 'phone'],
+                'attr' => ['placeholder' => 'reg.phone'],
                 ])
             ->add('email', EmailType::class, [
-                'attr' => ['placeholder' => 'email'],
+                'attr' => ['placeholder' => 'reg.email'],
                 ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'mapped' => false,
                 'required' => true,
-                'first_options' => ['attr' => ['placeholder' => 'password']],
-                'second_options' => ['attr' => ['placeholder' => 'repeatPassword']],
+                'first_options' => ['attr' => ['placeholder' => 'reg.password']],
+                'second_options' => ['attr' => ['placeholder' => 'reg.repeatPassword']],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
