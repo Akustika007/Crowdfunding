@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Crowdfunding;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -34,6 +36,11 @@ class CampaignFormType extends AbstractType
                 ]
             ])
 
+            ->add('category', EntityType::class, [
+                'label' => 'category.name',
+                'class' => Category::class,
+                'choice_label' => 'name',
+            ])
 //            ->add('image', FileType::class, [
 //                'label' => 'camp.image_label',
 //                'attr' => [

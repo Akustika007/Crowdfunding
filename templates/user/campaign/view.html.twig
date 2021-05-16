@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+{% endblock %}
+
 {% block body %}
     <!-- Page content-->
     <div class="container">
         <nav aria-label="breadcrumb" class="mt-4">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ path('app_homepage') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Library</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Data</li>
+                <li class="breadcrumb-item"><a href="{{ path('app_homepage') }}">Главная</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ campaign.category.name }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ campaign.name }}</li>
             </ol>
         </nav>
         <div class="row">
@@ -23,7 +28,7 @@
                 <span>Started on {{ createdTime }}</span>
                 <p>
                     by
-                    <a href="#!">{{ campaign.user }}</a>
+                    <a href="#!">{{ campaign.user.name }}</a>
                 </p>
                 <hr />
                 <!-- Preview image-->
@@ -93,10 +98,6 @@
             </div>
         </div>
     </div>
-    <!-- Footer-->
-    <footer class="py-5 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Crowdfunding 2021</p></div>
-    </footer>
 
 {% endblock %}
 

@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CrowdfundingRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\CrowdfundingRepository", repositoryClass=CrowdfundingRepository::class)
  */
 class Crowdfunding
 {
@@ -48,6 +48,7 @@ class Crowdfunding
      */
     private DateTimeInterface $createdAt;
 
+
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="crowdfunding")
      * @ORM\JoinColumn(nullable=false)
@@ -79,17 +80,22 @@ class Crowdfunding
      */
     private int $money_purpose;
 
+
     /**
      * @ORM\OneToMany(targetEntity=Rating::class, mappedBy="crowdfunding", orphanRemoval=true)
      */
     private $rating;
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private Category $category;
 
     public function __construct()
     {
         $this->comment = new ArrayCollection();
         $this->setCreatedAt(new DateTimeImmutable());
         $this->setUpdatedAt(new DateTimeImmutable());
-        $this->ratings = new ArrayCollection();
         $this->rating = new ArrayCollection();
     }
 
@@ -279,6 +285,18 @@ class Crowdfunding
                 $rating->setCrowdfunding(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
