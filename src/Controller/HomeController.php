@@ -29,4 +29,14 @@ class HomeController extends AbstractController
             'campaigns' => $campaigns, ['user' => $this->getUser()]
         ]);
     }
+
+    /**
+     * @Route("/switch-locale/{locale}", name="switch_locale", methods={"GET"})
+     */
+    public function switchLocale(Request $request, string $locale): Response
+    {
+        $request->getSession()->set('_locale', $locale);
+
+        return $this->redirectToRoute('app_homepage');
+    }
 }

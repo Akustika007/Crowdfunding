@@ -27,8 +27,8 @@
                 <li>
                     <form class="form-inline my-2 my-lg-0">
                         <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Search for..." />
-                            <span class="input-group-append"><button class="btn btn-secondary" type="button">Go!</button></span>
+                            <input class="form-control" type="text" placeholder="{{ 'navbar.search_holder'|trans }}" />
+                            <span class="input-group-append"><button class="btn btn-secondary" type="button">{{'navbar.search'|trans}}</button></span>
                         </div>
                     </form>
                 </li>
@@ -53,12 +53,12 @@
                 {% else %}
                     <li class="nav-item">
                         <a href="{{ path('app_signup') }}" class="nav-link bold">
-                            Signup
+                            {{ 'navbar.signup'|trans }}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ path('app_login') }}" class="nav-link bold">
-                            Login
+                            {{ 'navbar.login'|trans }}
                         </a>
                     </li>
                 {% endif %}
@@ -67,8 +67,30 @@
                         {{ app.request.locale|upper }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">FR</a>
-                        <a class="dropdown-item" href="#">EN</a>
+                        <a href="{{ path('switch_locale', {'locale': 'ru'}) }}" class="dropdown-item">RU
+                            <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 6" width="60" height="22">
+                                <rect fill="#fff" width="9" height="3"/><rect fill="#d52b1e" y="3" width="9" height="3"/>
+                                <rect fill="#0039a6" y="2" width="9" height="2"/>
+                            </svg>
+                        </a>
+                        <a href="{{ path('switch_locale', {'locale': 'en'}) }}" class="dropdown-item">EN
+                            <?xml version="1.0" encoding="UTF-8"?>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="61" height="16">
+                                <clipPath id="s">
+                                    <path d="M0,0 v30 h60 v-30 z"/>
+                                </clipPath>
+                                <clipPath id="t">
+                                    <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/>
+                                </clipPath>
+                                <g clip-path="url(#s)">
+                                    <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                                    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                                    <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+                                    <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                                    <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+                                </g>
+                            </svg>
+                        </a>
                     </div>
                 </li>
             </ul>
