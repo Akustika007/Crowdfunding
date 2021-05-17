@@ -17,7 +17,7 @@ class Bonus
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=Crowdfunding::class, inversedBy="bonuses")
@@ -44,6 +44,11 @@ class Bonus
      * @ORM\Column(type="datetime")
      */
     private DateTimeInterface $createdAt;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
 
     public function __construct(){
         $this->setCreatedAt(new DateTimeImmutable());
@@ -111,6 +116,18 @@ class Bonus
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

@@ -7,16 +7,12 @@ namespace App\Controller\User\Campaign;
 use App\Entity\Bonus;
 use App\Entity\Comment;
 use App\Entity\Crowdfunding;
-use App\Entity\User;
 use App\Form\BonusFormType;
-use App\Form\CampaignFormType;
 use App\Form\CommentFormType;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CampaignController extends AbstractController
 {
@@ -62,8 +58,6 @@ class CampaignController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $user = $this->getUser();
             $campaign->addComment($comment);
-            $user->addComment($comment);
-
             $em->persist($comment);
             $em->flush();
         }

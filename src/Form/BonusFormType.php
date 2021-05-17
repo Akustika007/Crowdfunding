@@ -7,6 +7,7 @@ namespace App\Form;
 use App\Entity\Bonus;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,6 +31,8 @@ class BonusFormType extends AbstractType
                 'placeholder' => 'bonus.desc_holder',
             ]
         ])
+
+        ->add('price', MoneyType::class)
 
         ->add('save', SubmitType::class, [
         'label' => 'bonus.save',

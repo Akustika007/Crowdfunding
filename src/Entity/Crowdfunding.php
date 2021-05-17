@@ -81,6 +81,11 @@ class Crowdfunding
     private int $money_purpose;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private int $money_collected;
+
+    /**
      * @ORM\OneToMany(targetEntity=Rating::class, mappedBy="crowdfunding", orphanRemoval=true)
      */
     private $rating;
@@ -95,6 +100,11 @@ class Crowdfunding
      */
     private $bonuses;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Payment::class, mappedBy="crowdfunding", orphanRemoval=true)
+     */
+    private $payments;
+
     public function __construct()
     {
         $this->comment = new ArrayCollection();
@@ -102,6 +112,8 @@ class Crowdfunding
         $this->setUpdatedAt(new DateTimeImmutable());
         $this->rating = new ArrayCollection();
         $this->bonuses = new ArrayCollection();
+        $this->payments = new ArrayCollection();
+        $this->money_collected = 0;
     }
 
     public function getId(): ?int
@@ -330,6 +342,52 @@ class Crowdfunding
             // set the owning side to null (unless already changed)
             if ($bonus->getCrowdfunding() === $this) {
                 $bonus->setCrowdfunding(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMoneyCollected(): int
+    {
+        return $this->money_collected;
+    }
+
+    /**
+     * @param int $money_collected
+     */
+    public function setMoneyCollected(int $money_collected): void
+    {
+        $this->money_collected = $money_collected;
+    }
+
+    /**
+     * @return Collection|Payment[]
+     */
+    public function getPayments(): Collection
+    {
+        return $this->payments;
+    }
+
+    public function addPayment(Payment $payment): self
+    {
+        if (!$this->payments->contains($payment)) {
+            $this->payments[] = $payment;
+            $payment->setCrowdfunding($this);
+        }
+
+        return $this;
+    }
+
+    public function removePayment(Payment $payment): self
+    {
+        if ($this->payments->removeElement($payment)) {
+            // set the owning side to null (unless already changed)
+            if ($payment->getCrowdfunding() === $this) {
+                $payment->setCrowdfunding(null);
             }
         }
 
