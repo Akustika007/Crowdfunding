@@ -58,15 +58,17 @@
                 {% if is_granted('ROLE_USER') %}
                 {{ render(controller('App\\Controller\\User\\Campaign\\CampaignController::commentForm', {'campaign': campaign.id})) }}
                 {% else %}
-                    <div class="notification is-primary">
-                        Вы не аутифицированы <br>
-                        <a href="{{ path('app_login') }}">Войти</a>
+                    <div class="notification is-primary card">
+                        <div class="card-body">
+                            <strong>Вы не аутифицированы</strong> <br>
+                        <a href="{{ path('app_login') }}" class="btn btn-primary btn-sm mt-2">Войти</a>
                         или
-                        <a href="{{ path('app_signup') }}">Зарегистрируйтесь</a>
+                        <a href="{{ path('app_signup') }}" class="btn btn-primary btn-sm mt-2">Зарегистрируйтесь</a>
+                        </div>
                     </div>
                 {% endif %}
                 {% for comment in campaign.comment|sort|reverse %}
-                    <div class="media mb-4">
+                    <div class="media mb-4 mt-2">
                         <img class="d-flex mr-3 rounded-circle" src="https://via.placeholder.com/50x50" alt="..." />
                         <div class="media-body">
                             <h5 class="mt-0">{{ comment.user.username }}</h5>
@@ -78,21 +80,34 @@
             </div>
             <!-- Sidebar widgets column-->
             <div class="col-md-4 mt-5">
+            {% if is_granted('ROLE_USER') %}
+                <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#exampleModal">
+                    {{'camp.new_bonus'|trans}}
+                </button>
+            {% endif %}
                 <!-- donations-->
+            {% for bonus in campaign.bonuses %}
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="https://via.placeholder.com/286x180" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">{{ bonus.name }}</h5>
+                        <p class="card-text">{{ bonus.description }}</p>
+                        <a href="#" class="btn btn-primary">{{ 'view.help'|trans }}</a>
                     </div>
                 </div>
-                <div class="card mt-2" style="width: 18rem;">
-                    <img class="card-img-top" src="https://via.placeholder.com/286x180" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+            {% endfor %}
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ 'camp.bonus_header'|trans }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{ render(controller('App\\Controller\\User\\Campaign\\CampaignController::bonusForm', {'campaign': campaign.id})) }}
+                        </div>
                     </div>
                 </div>
             </div>

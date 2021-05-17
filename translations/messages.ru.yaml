@@ -43,6 +43,10 @@ profile:
   project: Перейти к проекту
   edit: Редактировать
   delete: Удалить
+  close: Отменить
+  attention: Предупрежение!
+  delete_inf: Вы точно хотите удалить?
+
 camp:
   create: Управление проектом
   name_label: Название проекта
@@ -56,3 +60,16 @@ camp:
   descLong_label: Детальное описание
   save: Сохранить
   Belarus: Беларусь
+  new_bonus: Создать новый бонус
+  bonus_header: Создание нового бонуса
+
+bonus:
+  name_label: Название
+  name_holder: Название должно содержать не более 50 символов.
+  desc_label: Краткое описание
+  desc_holder: Опишите, что получит пользователь, если пожертвует в Ваш проект.
+  save: Создать
+  create:
+
+view:
+  help: Поддержать

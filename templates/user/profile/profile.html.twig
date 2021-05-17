@@ -24,6 +24,7 @@
 
         <ul class="nav flex-column mb-2">
             {% for campaign in campaigns %}
+                {% if campaign.status %}
                 <div class="card mt-3 justify-content-between">
                     <div>
                         <h5 class="card-header">{{ campaign.name }}</h5>
@@ -32,12 +33,37 @@
                             <p class="card-text">{{ campaign.description }}</p>
                             <a href="{{ path('camp_view', {id: campaign.id})}}" class="btn btn-primary">{{ 'profile.project'|trans }}</a>
                             <a href="{{ path('camp_edit', {id: campaign.id})}}" class="btn btn-warning">{{'profile.edit'|trans}}</a>
-                            <a href="{{ path('camp_delete', {id: campaign.id})}}" class="btn btn-danger">{{'profile.delete'|trans}}</a>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                {{'profile.delete'|trans}}
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">{{ 'profile.attention'|trans }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{ 'profile.delete_inf'|trans }}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'profile.close'|trans }}</button>
+                                            <a href="{{ path('camp_delete', {id: campaign.id})}}" class="btn btn-danger">{{'profile.delete'|trans}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div>
                     </div>
                 </div>
+                {% endif %}
             {% endfor %}
         </ul>
         <div class="navigation d-flex justify-content-center">

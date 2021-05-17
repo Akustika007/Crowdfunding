@@ -4,16 +4,23 @@
 namespace App\Controller\User\Campaign;
 
 
+use App\Entity\Bonus;
 use App\Entity\Comment;
 use App\Entity\Crowdfunding;
+use App\Entity\User;
+use App\Form\BonusFormType;
+use App\Form\CampaignFormType;
 use App\Form\CommentFormType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CampaignController extends AbstractController
 {
+    private const FLASH_INFO = 'info';
 
     /**
      * @return Response
@@ -64,4 +71,34 @@ class CampaignController extends AbstractController
         return $this->redirectToRoute('camp_view', ['id' => $campaign->getId()]);
     }
 
+    public function bonusForm(Crowdfunding $campaign): Response
+    {
+        $form = $this->createForm(BonusFormType::class);
+
+        return $this->render('user/campaign/_create_bonus.html.twig', [
+            'create_bonus' => $form->createView(),
+            'campaign' => $campaign,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     * @Route("/campaign/{id<\d+>}/create_bonus", name="bonus_create")
+     */
+    public function createBonus(Crowdfunding $campaign, Request $request)  : Response
+    {
+        $bonus = new Bonus();
+        $form = $this->createForm(BonusFormType::class, $bonus);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $campaign->addBonus($bonus);
+            $em->persist($bonus);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('camp_view', ['id' => $campaign->getId()]);
+    }
 }

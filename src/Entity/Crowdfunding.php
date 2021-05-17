@@ -80,7 +80,6 @@ class Crowdfunding
      */
     private int $money_purpose;
 
-
     /**
      * @ORM\OneToMany(targetEntity=Rating::class, mappedBy="crowdfunding", orphanRemoval=true)
      */
@@ -91,12 +90,18 @@ class Crowdfunding
      */
     private Category $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Bonus::class, mappedBy="crowdfunding", orphanRemoval=true)
+     */
+    private $bonuses;
+
     public function __construct()
     {
         $this->comment = new ArrayCollection();
         $this->setCreatedAt(new DateTimeImmutable());
         $this->setUpdatedAt(new DateTimeImmutable());
         $this->rating = new ArrayCollection();
+        $this->bonuses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -297,6 +302,36 @@ class Crowdfunding
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Bonus[]
+     */
+    public function getBonuses(): Collection
+    {
+        return $this->bonuses;
+    }
+
+    public function addBonus(Bonus $bonus): self
+    {
+        if (!$this->bonuses->contains($bonus)) {
+            $this->bonuses[] = $bonus;
+            $bonus->setCrowdfunding($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBonus(Bonus $bonus): self
+    {
+        if ($this->bonuses->removeElement($bonus)) {
+            // set the owning side to null (unless already changed)
+            if ($bonus->getCrowdfunding() === $this) {
+                $bonus->setCrowdfunding(null);
+            }
+        }
 
         return $this;
     }

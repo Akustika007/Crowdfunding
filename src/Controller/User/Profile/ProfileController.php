@@ -7,6 +7,7 @@ namespace App\Controller\User\Profile;
 use App\Entity\Crowdfunding;
 use App\Entity\User;
 use App\Form\CampaignFormType;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,6 +19,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ProfileController extends AbstractController
 {
     private const FLASH_INFO = 'info';
+
+    private const STATUS_DELETED = 0;
 
     /**
      * @Route ("user/profile", name="profile")
@@ -78,6 +81,7 @@ class ProfileController extends AbstractController
         $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid())
         {
+            $campaign->setUpdatedAt(new DateTimeImmutable());
             $em->persist($campaign);
             $em->flush();
             return $this->redirectToRoute('camp_edit', ['id' => $campaign->getId()]);
@@ -95,9 +99,10 @@ class ProfileController extends AbstractController
      */
     public function deleteShop(Crowdfunding $campaign, EntityManagerInterface $em): Response
     {
-        $em->remove($campaign);
+        $campaign->setStatus(self::STATUS_DELETED);
+        $campaign->setUpdatedAt(new DateTimeImmutable());
+        $em->persist($campaign);
         $em->flush();
-
         return $this->redirectToRoute('profile');
     }
 

@@ -42,6 +42,9 @@ profile:
   project: View project
   edit: Edit
   delete: Delete
+  close: Close
+  attention: Attention!
+  delete_inf: Are you sure you want to delete?
 
 camp:
   create: Prject control
@@ -55,3 +58,17 @@ camp:
   finishedAt_label: Expiration date
   descLong_label: Detailed description
   save: Save
+  new_bonus: Create new bonus
+  bonus_header: Creating new bonus
+
+
+bonus:
+  name_label: Name
+  name_holder: The name should be no more than 50 characters.
+  desc_label: Short description
+  desc_holder: Describe your bonus
+  save:
+  create:
+
+view:
+  help: Pay donation
