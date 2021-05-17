@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Subscribers;
+namespace App\EventSubscriber;
 
 
 use App\Entity\Crowdfunding;
